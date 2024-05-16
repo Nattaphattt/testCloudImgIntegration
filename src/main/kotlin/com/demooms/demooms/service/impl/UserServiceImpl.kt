@@ -7,8 +7,10 @@ import com.demooms.demooms.repository.UserEntityRepository
 import com.demooms.demooms.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.web.multipart.MultipartFile
+import java.io.File
 import java.io.IOException
-import java.util.Objects
+import javax.imageio.ImageIO
 
 
 @Service
@@ -65,5 +67,15 @@ class UserServiceImpl : UserService {
         }
         return addressList;
 
+    }
+
+    override fun uploadSomeImage(img: MultipartFile, publicId: String): List<String> {
+
+        val params = ObjectUtils.asMap(
+            "public_id", publicId,
+
+        )
+        val uploadResult = cloudinary.uploader().upload(img.bytes, params)
+        return listOf(uploadResult["secure_url"] as String)
     }
 }

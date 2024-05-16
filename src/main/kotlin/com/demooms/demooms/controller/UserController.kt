@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
+import org.springframework.web.multipart.MultipartFile
+import java.io.File
+import javax.imageio.ImageIO
 
 @Serializable
 @RestController
@@ -69,5 +72,10 @@ class UserController {
     @GetMapping("/getAllImages")
     fun getAllImages(): List<String> {
         return userService.retrieveAllImages()
+    }
+
+    @PostMapping("/addImage")
+    fun addSomeImage(@RequestBody image: MultipartFile, @RequestParam id: String): List<String> {
+        return userService.uploadSomeImage(image, id)
     }
 }
