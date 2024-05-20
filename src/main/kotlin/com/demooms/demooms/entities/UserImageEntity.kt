@@ -12,7 +12,9 @@ data class UserImageEntity(
     @Column(name = "user_id")
     val userId : Long,
     @Column(name = "image_url")
-    val imageUrl: String
+    val imageUrl: String,
+    @Column(name = "image_public_id")
+    val imagePublicId: String
 
 
 )

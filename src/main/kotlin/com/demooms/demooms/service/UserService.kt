@@ -13,6 +13,7 @@ interface UserService {
     fun deleteUser(id: Long)
     fun findFilteredUsers(id: Long?, userName: String, firstName: String, lastName: String): List<UserEntity>
     fun testUploadImage()
-    fun retrieveAllImages(): List<String>
-    fun uploadSomeImage(img: MultipartFile, publicId: String): List<String>
+    fun retrieveAllImages(): List<Map<String,String>>
+    fun uploadSomeImage(img: MultipartFile, publicId: String, userId: Long): List<String>
+    fun deleteImage(userID: Long, imagePublicId: String): List<String>
 }

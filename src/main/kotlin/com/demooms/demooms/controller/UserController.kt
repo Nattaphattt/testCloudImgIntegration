@@ -70,12 +70,12 @@ class UserController {
     }
 
     @GetMapping("/getAllImages")
-    fun getAllImages(): List<String> {
+    fun getAllImages(): List<Map<String, String>> {
         return userService.retrieveAllImages()
     }
 
     @PostMapping("/addImage")
-    fun addSomeImage(@RequestBody image: MultipartFile, @RequestParam id: String): List<String> {
-        return userService.uploadSomeImage(image, id)
+    fun addSomeImage(@RequestBody image: MultipartFile, @RequestParam publicId: String, @RequestParam userId: Long): List<String> {
+        return userService.uploadSomeImage(image, publicId, userId)
     }
 }
